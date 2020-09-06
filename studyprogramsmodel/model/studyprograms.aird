@@ -4,7 +4,7 @@
     <semanticResources>studyprograms.ecore</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_-G0EcOUrEeq-IbHMsfbisA">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="___qccOUrEeq-IbHMsfbisA" name="studyprograms class diagram" repPath="#__-k3UOUrEeq-IbHMsfbisA" changeId="0ea1e22d-f4b4-401f-a637-1ca81abda5a6">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="___qccOUrEeq-IbHMsfbisA" name="studyprograms class diagram" repPath="#__-k3UOUrEeq-IbHMsfbisA" changeId="3b500a0c-af05-45ed-a7c7-aaeaf824bf82">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
         <target xmi:type="ecore:EPackage" href="studyprograms.ecore#/"/>
       </ownedRepresentationDescriptors>
@@ -258,7 +258,7 @@
             <styles xmi:type="notation:FilteringStyle" xmi:id="_pJDU8_BLEeqf-5I-dtEwbw"/>
           </children>
           <styles xmi:type="notation:ShapeStyle" xmi:id="_pJCt4fBLEeqf-5I-dtEwbw" fontName="Ubuntu" fontHeight="8"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_pJCt4vBLEeqf-5I-dtEwbw" x="-36" y="72" width="140" height="50"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_pJCt4vBLEeqf-5I-dtEwbw" x="312" y="24" width="140" height="50"/>
         </children>
         <styles xmi:type="notation:DiagramStyle" xmi:id="___9-cuUrEeq-IbHMsfbisA"/>
         <edges xmi:type="notation:Edge" xmi:id="_ojQDUOcCEeqasPtEKTQF8g" type="4001" element="_ojGSVucCEeqasPtEKTQF8g" source="_b1hwEOUsEeq-IbHMsfbisA" target="_BCV6UOcBEeqasPtEKTQF8g">
