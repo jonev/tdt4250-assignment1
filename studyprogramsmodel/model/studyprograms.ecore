@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="studyprograms" nsURI="studyprogramsmodel" nsPrefix="studyprograms">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="validationDelegates" value="http://www.eclipse.org/acceleo/query/1.0"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="Course">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="credit" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble" defaultValueLiteral="7.5"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="code" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="level" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="taughtIn" lowerBound="1"
+        eType="#//SemesterPart"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="coursegroups" upperBound="-1"
+        eType="#//CourseGroup" eOpposite="#//CourseGroup/courses"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StudyProgram">
+    <eOperations name="getCoursesForSemester" upperBound="-1" eType="#//Course">
+      <eParameters name="maxLevel" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eParameters name="part" eType="#//SemesterPart"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nrOfSemesters" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="10"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="specialisations" upperBound="-1"
+        eType="#//Specialisations" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="coursegroup" upperBound="-1"
+        eType="#//CourseGroup" eOpposite="#//CourseGroup/studyprogram"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Semester">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="coursesHasRightLevel taughtAtTheRigthTimeOfTheYear"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="level" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="part" eType="#//SemesterPart"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="creditLimit" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="30"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="course" upperBound="-1"
+        eType="#//Course"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Specialisations">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="coursegroup" upperBound="-1"
+        eType="#//CourseGroup" eOpposite="#//CourseGroup/specialisations"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="SemesterPart">
+    <eLiterals name="FALL"/>
+    <eLiterals name="SPRING" value="1"/>
+    <eLiterals name="YEAR" value="2" literal="YEAR"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CourseGroup">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="courses" upperBound="-1"
+        eType="#//Course" eOpposite="#//Course/coursegroups"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//CourseGroupeType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="studyprogram" upperBound="-1"
+        eType="#//StudyProgram" eOpposite="#//StudyProgram/coursegroup"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="specialisations" upperBound="-1"
+        eType="#//Specialisations" eOpposite="#//Specialisations/coursegroup"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="CourseGroupeType">
+    <eLiterals name="MANDATORY"/>
+    <eLiterals name="TWO_OF_FOUR" value="1"/>
+    <eLiterals name="ELECTIVE_NO_CRASH" value="2"/>
+    <eLiterals name="ELECTIVE_CAN_CRASH" value="3"/>
+    <eLiterals name="ONE_IN_GROUP" value="4"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NTNU">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="studyprograms" lowerBound="1"
+        upperBound="-1" eType="#//StudyProgram" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="courses" lowerBound="1"
+        upperBound="-1" eType="#//Course" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="coursegroup" upperBound="-1"
+        eType="#//CourseGroup" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="studyplan" upperBound="-1"
+        eType="#//StudyPlan" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StudyPlan">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="nrOfSemestersIsOk"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/acceleo/query/1.0">
+      <details key="nrOfSemestersIsOk" value="self.semester->size() == self.studyprogram.nrOfSemesters"/>
+    </eAnnotations>
+    <eOperations name="addSemester">
+      <eParameters name="semester" eType="#//Semester"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="studentName" eType="#//StudentId"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="studyprogram" lowerBound="1"
+        eType="#//StudyProgram"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="specialisations" upperBound="-1"
+        eType="#//Specialisations"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="semester" upperBound="10"
+        eType="#//Semester" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="StudentId" instanceClassName="java.lang.String"/>
+</ecore:EPackage>

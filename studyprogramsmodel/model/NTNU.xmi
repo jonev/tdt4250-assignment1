@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<studyprograms:NTNU
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:studyprograms="studyprogramsmodel"
+    xsi:schemaLocation="studyprogramsmodel studyprograms.ecore">
+  <studyprograms
+      name="5 årig data"
+      coursegroup="//@coursegroup.0">
+    <specialisations
+        name="Programvaresystemer 3.år"
+        coursegroup="//@coursegroup.1 //@coursegroup.2 //@coursegroup.3"/>
+    <specialisations
+        name="Programvaresystemer 4-5. år"
+        coursegroup="//@coursegroup.4"/>
+  </studyprograms>
+  <courses name="Informasjonsteknologi"
+      code="TDT4110"
+      level="1"
+      coursegroups="//@coursegroup.0"/>
+  <courses name="Objektorientert programmering"
+      code="TDT4100"
+      level="1"
+      taughtIn="SPRING"
+      coursegroups="//@coursegroup.0"/>
+  <courses name="Algoritmer og datastrukturer"
+      code="TDT4120"
+      level="2"
+      coursegroups="//@coursegroup.0"/>
+  <courses name="Systemutvikling"
+      code="TDT4140"
+      level="2"
+      taughtIn="SPRING"
+      coursegroups="//@coursegroup.0"/>
+  <courses name="Logikk"
+      code="TDT4136"
+      level="3"
+      coursegroups="//@coursegroup.1"/>
+  <courses name="Operajonsanalyse"
+      code="TIØ4120"
+      level="3"
+      coursegroups="//@coursegroup.2"/>
+  <courses name="Algoritmekonstruksjon"
+      code="TDT4125"
+      level="3"
+      taughtIn="SPRING"
+      coursegroups="//@coursegroup.3"/>
+  <courses name="Modellbasert utvikling"
+      code="TDT4250"
+      level="4"
+      coursegroups="//@coursegroup.4"/>
+  <coursegroup
+      name="Obligatoriske fag 5 årig ingeniør"
+      courses="//@courses.0 //@courses.1 //@courses.2 //@courses.3"
+      studyprogram="//@studyprograms.0"/>
+  <coursegroup
+      name="Programvaresystemer Obligatoriske"
+      courses="//@courses.4"
+      specialisations="//@studyprograms.0/@specialisations.0"/>
+  <coursegroup
+      name="Programvaresystemer Komplemntære"
+      courses="//@courses.5"
+      type="ELECTIVE_CAN_CRASH"
+      specialisations="//@studyprograms.0/@specialisations.0"/>
+  <coursegroup
+      name="Programvaresystemer Valgbare"
+      courses="//@courses.6"
+      type="ELECTIVE_NO_CRASH"
+      specialisations="//@studyprograms.0/@specialisations.0"/>
+  <coursegroup
+      name="Proamvareutvikling Obligatoriske"
+      courses="//@courses.7"
+      specialisations="//@studyprograms.0/@specialisations.1"/>
+  <studyplan
+      studentName="Jone"
+      studyprogram="//@studyprograms.0"
+      specialisations="//@studyprograms.0/@specialisations.0 //@studyprograms.0/@specialisations.1">
+    <semester
+        level="1"
+        course="//@courses.0"/>
+  </studyplan>
+  <studyplan
+      studentName="Jo"
+      studyprogram="//@studyprograms.0"/>
+</studyprograms:NTNU>
