@@ -209,7 +209,15 @@ public class StudyProgramImpl extends MinimalEObjectImpl.Container implements St
 				}
 			}
 		}
-			
+		for(Specialisations s: this.getSpecialisations()) {
+			for(CourseGroup g : s.getCoursegroup()) {
+				for(Course c : g.getCourses()) {
+					if(c.getLevel() <= maxLevel && c.getTaughtIn() == part) {
+						list.add(c);
+					}
+				}
+			}
+		}
 		return list;
 	}
 

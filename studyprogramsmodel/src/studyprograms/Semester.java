@@ -119,4 +119,12 @@ public interface Semester extends EObject {
 	 */
 	String getName();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	void addCourse(Course course);
+
 } // Semester

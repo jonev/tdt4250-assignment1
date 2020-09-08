@@ -369,6 +369,16 @@ public class StudyprogramsPackageImpl extends EPackageImpl implements Studyprogr
 	 * @generated
 	 */
 	@Override
+	public EOperation getSemester__AddCourse__Course() {
+		return semesterEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getSpecialisations() {
 		return specialisationsEClass;
 	}
@@ -643,6 +653,7 @@ public class StudyprogramsPackageImpl extends EPackageImpl implements Studyprogr
 		createEAttribute(semesterEClass, SEMESTER__CREDIT_LIMIT);
 		createEReference(semesterEClass, SEMESTER__COURSE);
 		createEAttribute(semesterEClass, SEMESTER__NAME);
+		createEOperation(semesterEClass, SEMESTER___ADD_COURSE__COURSE);
 
 		specialisationsEClass = createEClass(SPECIALISATIONS);
 		createEAttribute(specialisationsEClass, SPECIALISATIONS__NAME);
@@ -730,6 +741,9 @@ public class StudyprogramsPackageImpl extends EPackageImpl implements Studyprogr
 		initEAttribute(getSemester_CreditLimit(), ecorePackage.getEInt(), "creditLimit", "30", 1, 1, Semester.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSemester_Course(), this.getCourse(), null, "course", null, 0, -1, Semester.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSemester_Name(), ecorePackage.getEString(), "name", null, 0, 1, Semester.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+
+		op = initEOperation(getSemester__AddCourse__Course(), null, "addCourse", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getCourse(), "course", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(specialisationsEClass, Specialisations.class, "Specialisations", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getSpecialisations_Name(), ecorePackage.getEString(), "name", null, 0, 1, Specialisations.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

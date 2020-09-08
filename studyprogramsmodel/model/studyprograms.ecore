@@ -32,6 +32,9 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="coursesHasRightLevel taughtAtTheRigthTimeOfTheYear"/>
     </eAnnotations>
+    <eOperations name="addCourse">
+      <eParameters name="course" eType="#//Course"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="level" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="part" eType="#//SemesterPart"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="creditLimit" lowerBound="1"

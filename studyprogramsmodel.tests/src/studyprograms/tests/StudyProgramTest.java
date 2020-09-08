@@ -2,14 +2,18 @@
  */
 package studyprograms.tests;
 
+import static org.junit.Assert.assertThrows;
+
 import junit.framework.TestCase;
 
 import junit.textui.TestRunner;
 import studyprograms.Course;
 import studyprograms.CourseGroup;
 import studyprograms.SemesterPart;
+import studyprograms.Specialisations;
 import studyprograms.StudyProgram;
 import studyprograms.StudyprogramsFactory;
+import studyprograms.impl.StudyprogramsFactoryImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -125,6 +129,39 @@ public class StudyProgramTest extends TestCase {
 		assertEquals(1, program.getCoursesForSemester(2, SemesterPart.SPRING).size());
 		assertEquals(0, program.getCoursesForSemester(1, SemesterPart.SPRING).size());
 		assertEquals(0, program.getCoursesForSemester(1, SemesterPart.SPRING).size());
+		
+		
+		Specialisations spes = StudyprogramsFactory.eINSTANCE.createSpecialisations();
+		program.getSpecialisations().add(spes);
+		CourseGroup group2 = StudyprogramsFactory.eINSTANCE.createCourseGroup();
+		spes.getCoursegroup().add(group2);
+		Course course4 = StudyprogramsFactory.eINSTANCE.createCourse();
+		course4.setLevel(1);
+		course4.setTaughtIn(SemesterPart.FALL);
+		group2.getCourses().add(course4);
+		
+		assertEquals(2, program.getCoursesForSemester(1, SemesterPart.FALL).size());
+		assertEquals(3, program.getCoursesForSemester(2, SemesterPart.FALL).size());
+		assertEquals(0, program.getCoursesForSemester(1, SemesterPart.SPRING).size());
+		
+		Course course5 = StudyprogramsFactory.eINSTANCE.createCourse();
+		course5.setLevel(2);
+		course5.setTaughtIn(SemesterPart.FALL);
+		group2.getCourses().add(course5);
+		
+		assertEquals(2, program.getCoursesForSemester(1, SemesterPart.FALL).size());
+		assertEquals(4, program.getCoursesForSemester(2, SemesterPart.FALL).size());
+		assertEquals(0, program.getCoursesForSemester(1, SemesterPart.SPRING).size());
+				
+	}
+	
+	/**
+	 * @generated NOT
+	 */
+	public void testcreateStudentIdFromString() {
+		StudyprogramsFactoryImpl fact = new StudyprogramsFactoryImpl();
+		assertThrows(IllegalArgumentException.class, () -> fact.createStudentIdFromString(null, "q"));
+				
 	}
 
 	

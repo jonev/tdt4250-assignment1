@@ -227,7 +227,7 @@ public class StudyprogramsFactoryImpl extends EFactoryImpl implements Studyprogr
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated MOT
+	 * @generated NOT
 	 */
 	public String createStudentIdFromString(EDataType eDataType, String initialValue) {
 		if(initialValue.length() < 3) {

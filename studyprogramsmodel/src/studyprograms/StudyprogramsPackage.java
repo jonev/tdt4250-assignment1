@@ -280,13 +280,22 @@ public interface StudyprogramsPackage extends EPackage {
 	int SEMESTER_FEATURE_COUNT = 5;
 
 	/**
+	 * The operation id for the '<em>Add Course</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEMESTER___ADD_COURSE__COURSE = 0;
+
+	/**
 	 * The number of operations of the '<em>Semester</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SEMESTER_OPERATION_COUNT = 0;
+	int SEMESTER_OPERATION_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link studyprograms.impl.SpecialisationsImpl <em>Specialisations</em>}' class.
@@ -782,6 +791,16 @@ public interface StudyprogramsPackage extends EPackage {
 	EAttribute getSemester_Name();
 
 	/**
+	 * Returns the meta object for the '{@link studyprograms.Semester#addCourse(studyprograms.Course) <em>Add Course</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Add Course</em>' operation.
+	 * @see studyprograms.Semester#addCourse(studyprograms.Course)
+	 * @generated
+	 */
+	EOperation getSemester__AddCourse__Course();
+
+	/**
 	 * Returns the meta object for class '{@link studyprograms.Specialisations <em>Specialisations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1207,6 +1226,14 @@ public interface StudyprogramsPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute SEMESTER__NAME = eINSTANCE.getSemester_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Add Course</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation SEMESTER___ADD_COURSE__COURSE = eINSTANCE.getSemester__AddCourse__Course();
 
 		/**
 		 * The meta object literal for the '{@link studyprograms.impl.SpecialisationsImpl <em>Specialisations</em>}' class.

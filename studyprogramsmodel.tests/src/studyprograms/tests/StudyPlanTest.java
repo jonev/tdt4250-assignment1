@@ -2,11 +2,15 @@
  */
 package studyprograms.tests;
 
+import static org.junit.Assert.assertThrows;
+
 import junit.framework.TestCase;
 
 import junit.textui.TestRunner;
 import studyprograms.Semester;
+import studyprograms.SemesterPart;
 import studyprograms.StudyPlan;
+import studyprograms.StudyProgram;
 import studyprograms.StudyprogramsFactory;
 
 /**
@@ -100,15 +104,40 @@ public class StudyPlanTest extends TestCase {
 	 * @generated NOT
 	 */
 	public void testAddSemester__Semester() {
+		StudyProgram program = StudyprogramsFactory.eINSTANCE.createStudyProgram();
+		program.setNrOfSemesters(2);
 		StudyPlan plan = StudyprogramsFactory.eINSTANCE.createStudyPlan();
+		plan.setStudyprogram(program);
 		Semester semester = StudyprogramsFactory.eINSTANCE.createSemester();
+		semester.setLevel(1);
+		semester.setPart(SemesterPart.FALL);
+		
 		assertFalse(plan.getSemester().contains(semester));
+		
 		plan.addSemester(semester);
 		assertTrue(plan.getSemester().contains(semester));
+		
 		Semester semester2 = StudyprogramsFactory.eINSTANCE.createSemester();
+		semester2.setLevel(1);
+		semester2.setPart(SemesterPart.SPRING);
 		assertFalse(plan.getSemester().contains(semester2));
+		
 		plan.addSemester(semester2);
 		assertTrue(plan.getSemester().contains(semester2));
+		
+		// Testing errors
+		
+		Semester semester3 = StudyprogramsFactory.eINSTANCE.createSemester();
+		// To many semesters
+		assertThrows(IllegalArgumentException.class, () -> plan.addSemester(semester3));
+		// Already exists
+		semester3.setLevel(1);
+		semester3.setPart(SemesterPart.FALL);
+		assertThrows(IllegalArgumentException.class, () -> plan.addSemester(semester3));
+		
+		
+		
+		
 		
 	}
 

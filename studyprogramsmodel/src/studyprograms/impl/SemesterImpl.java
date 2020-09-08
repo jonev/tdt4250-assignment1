@@ -2,6 +2,7 @@
  */
 package studyprograms.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
@@ -236,6 +237,27 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public void addCourse(Course course) {
+		if(course.getLevel() > this.level) {
+			throw new IllegalArgumentException("Course is to high level for this semester");
+		}
+		if(course.getTaughtIn() != this.part) {
+			throw new IllegalArgumentException("Course is not taught in this semester part");
+		}
+			
+		double creditsSoFar = this.getCourse().stream().mapToDouble(c -> c.getCredit()).sum();
+		if(creditsSoFar + course.getCredit() > this.creditLimit) {
+			throw new IllegalArgumentException("Semester credit limit exceeded");
+		}
+		this.course.add(course);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -325,6 +347,21 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 				return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case StudyprogramsPackage.SEMESTER___ADD_COURSE__COURSE:
+				addCourse((Course)arguments.get(0));
+				return null;
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 	/**

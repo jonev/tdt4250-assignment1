@@ -208,6 +208,15 @@ public class StudyPlanImpl extends MinimalEObjectImpl.Container implements Study
 	 */
 	@Override
 	public void addSemester(Semester semester) {
+		// TODO
+		if(this.studyprogram.getNrOfSemesters() <= this.getSemester().size()) {
+			throw new IllegalArgumentException("Max nr of semester is reached");
+		}
+		for(Semester s : this.getSemester()) {
+			if(s.getLevel() == semester.getLevel() && s.getPart() == semester.getPart()) {
+				throw new IllegalArgumentException("Semester already exist");
+			}
+		}
 		this.getSemester().add(semester);
 	}
 

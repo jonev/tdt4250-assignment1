@@ -43,6 +43,9 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute studyprograms.ecore#//Semester/creditLimit"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference studyprograms.ecore#//Semester/course"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute studyprograms.ecore#//Semester/name"/>
+      <genOperations ecoreOperation="studyprograms.ecore#//Semester/addCourse">
+        <genParameters ecoreParameter="studyprograms.ecore#//Semester/addCourse/course"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="studyprograms.ecore#//Specialisations">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute studyprograms.ecore#//Specialisations/name"/>
