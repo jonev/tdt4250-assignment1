@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="studyprograms" nsURI="studyprogramsmodel" nsPrefix="studyprograms">
-  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-    <details key="validationDelegates" value="http://www.eclipse.org/acceleo/query/1.0"/>
-  </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="Course">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="credit" lowerBound="1"
@@ -82,12 +79,6 @@
         eType="#//StudyPlan" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StudyPlan">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="nrOfSemestersIsOk"/>
-    </eAnnotations>
-    <eAnnotations source="http://www.eclipse.org/acceleo/query/1.0">
-      <details key="nrOfSemestersIsOk" value="self.semester->size() == self.studyprogram.nrOfSemesters"/>
-    </eAnnotations>
     <eOperations name="addSemester">
       <eParameters name="semester" eType="#//Semester"/>
     </eOperations>

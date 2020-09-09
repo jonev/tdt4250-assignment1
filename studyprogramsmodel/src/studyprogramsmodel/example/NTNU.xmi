@@ -4,7 +4,7 @@
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:studyprograms="studyprogramsmodel"
-    xsi:schemaLocation="studyprogramsmodel studyprograms.ecore">
+    xsi:schemaLocation="studyprogramsmodel ../../../model/studyprograms.ecore">
   <studyprograms
       name="5 årig data"
       coursegroup="//@coursegroup.0">
@@ -72,4 +72,13 @@
       name="Proamvareutvikling Obligatoriske"
       courses="//@courses.7"
       specialisations="//@studyprograms.0/@specialisations.1"/>
+  <studyplan
+      studentName="Jone"
+      studyprogram="//@studyprograms.0"
+      specialisations="//@studyprograms.0/@specialisations.0">
+    <semester
+        level="1"
+        part="SPRING"
+        course="//@courses.1"/>
+  </studyplan>
 </studyprograms:NTNU>
