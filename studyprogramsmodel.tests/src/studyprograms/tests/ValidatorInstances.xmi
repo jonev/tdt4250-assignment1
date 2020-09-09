@@ -7,6 +7,7 @@
     xsi:schemaLocation="studyprogramsmodel ../../../../studyprogramsmodel/model/studyprograms.ecore">
   <studyprograms
       name="5 årig data"
+      nrOfSemesters="2"
       coursegroup="//@coursegroup.0">
     <specialisations
         name="Programvaresystemer 3.år"
@@ -73,11 +74,14 @@
       courses="//@courses.7"
       specialisations="//@studyprograms.0/@specialisations.1"/>
   <studyplan
-      studentName="Test of validators"
+      studentName="Jone"
       studyprogram="//@studyprograms.0"
-      specialisations="//@studyprograms.0/@specialisations.0">
+      specialisations="//@studyprograms.0/@specialisations.0 //@studyprograms.0/@specialisations.1">
     <semester
         level="1"
-        course="//@courses.2"/>
+        course="//@courses.0 //@courses.6"/>
+    <semester
+        level="1"
+        course="//@courses.0"/>
   </studyplan>
 </studyprograms:NTNU>

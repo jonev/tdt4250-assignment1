@@ -4,7 +4,7 @@
     <semanticResources>studyprograms.ecore</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_-G0EcOUrEeq-IbHMsfbisA">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="___qccOUrEeq-IbHMsfbisA" name="studyprograms class diagram" repPath="#__-k3UOUrEeq-IbHMsfbisA" changeId="9c3a3645-de4d-4dcf-9a4a-aee4452a50ce">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="___qccOUrEeq-IbHMsfbisA" name="studyprograms class diagram" repPath="#__-k3UOUrEeq-IbHMsfbisA" changeId="827d6d11-7b25-439d-9a52-f53c252bf7d2">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
         <target xmi:type="ecore:EPackage" href="studyprograms.ecore#/"/>
       </ownedRepresentationDescriptors>
@@ -337,7 +337,7 @@
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CPKLo_ApEeqf-5I-dtEwbw" x="11" y="42"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_CPKLpPApEeqf-5I-dtEwbw" type="6003">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CPKLpfApEeqf-5I-dtEwbw" x="-12" y="11"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CPKLpfApEeqf-5I-dtEwbw" x="-12" y="46"/>
           </children>
           <styles xmi:type="notation:ConnectorStyle" xmi:id="_CPJkkfApEeqf-5I-dtEwbw" routing="Rectilinear"/>
           <styles xmi:type="notation:FontStyle" xmi:id="_CPJkkvApEeqf-5I-dtEwbw" fontName="Ubuntu" fontHeight="8"/>
@@ -353,7 +353,7 @@
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_rICCk_ApEeqf-5I-dtEwbw" x="-5" y="8"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_rICClPApEeqf-5I-dtEwbw" type="6003">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_rICClfApEeqf-5I-dtEwbw" x="-67" y="-19"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_rICClfApEeqf-5I-dtEwbw" x="-43" y="-12"/>
           </children>
           <styles xmi:type="notation:ConnectorStyle" xmi:id="_rIBbgfApEeqf-5I-dtEwbw" routing="Rectilinear"/>
           <styles xmi:type="notation:FontStyle" xmi:id="_rIBbgvApEeqf-5I-dtEwbw" fontName="Ubuntu" fontHeight="8"/>
