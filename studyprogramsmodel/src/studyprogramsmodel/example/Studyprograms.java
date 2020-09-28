@@ -1,6 +1,11 @@
 package studyprogramsmodel.example;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -9,28 +14,23 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.jsoup.nodes.Document;
 
 import studyprograms.Course;
 import studyprograms.NTNU;
 import studyprograms.StudyprogramsPackage;
+import studyprograms.toHtml.ToHtmlParser;
 
 
 public class Studyprograms {
-	public static void main(String[] args) {
-		ResourceSet resSet = new ResourceSetImpl();
-		resSet.getPackageRegistry().put(StudyprogramsPackage.eNS_URI, StudyprogramsPackage.eINSTANCE);
-		resSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
-		Resource resource = resSet.getResource(URI.createURI(Studyprograms.class.getResource("NTNU.xmi").toString()), true);
-		NTNU dep = (NTNU) resource.getContents().get(0);
-		//for (Course course : dep.getOwnsCourses()) {
-		//	System.out.println(course);
-		//}
-		// Running own written constraints
-		Diagnostic dig = Diagnostician.INSTANCE.validate(dep);
-		for(Diagnostic d: dig.getChildren()) {
-			System.out.println(d.toString());
-		}
-		System.out.println(dig.getSeverity());
+	public static void main(String[] args) throws Exception {
+		ToHtmlParser parser = new ToHtmlParser();
+		EList<EObject> objects = parser.getResource(Studyprograms.class.getResource("NTNU.xmi").toString());
+		Document doc = parser.createDocument((NTNU)objects.get(0));
+		BufferedWriter writer = new BufferedWriter(new FileWriter("frakode.html"));
+	    System.out.println(doc.toString());
+		writer.write(doc.toString());   
+	    writer.close();
 	}
 
 }

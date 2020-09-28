@@ -73,7 +73,7 @@
       courses="//@courses.7"
       specialisations="//@studyprograms.0/@specialisations.1"/>
   <studyplan
-      studentName="Jone"
+      studentName="Jone V"
       studyprogram="//@studyprograms.0"
       specialisations="//@studyprograms.0/@specialisations.0 //@studyprograms.0/@specialisations.1">
     <semester

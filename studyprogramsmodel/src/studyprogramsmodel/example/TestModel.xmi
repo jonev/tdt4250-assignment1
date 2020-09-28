@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<studyprograms:NTNU
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:studyprograms="studyprogramsmodel"
+    xsi:schemaLocation="studyprogramsmodel ../../../model/studyprograms.ecore">
+  <courses name="Informasjonsteknologi"
+      code="TDT4110"
+      level="1"/>
+  <courses name="Objektorientert programmering"
+      code="TDT4100"
+      level="1"
+      taughtIn="SPRING"/>
+  <courses name="Algoritmer og datastrukturer"
+      code="TDT4120"
+      level="2"/>
+  <courses name="Systemutvikling"
+      code="TDT4140"
+      level="2"
+      taughtIn="SPRING"/>
+  <courses name="Logikk"
+      code="TDT4136"
+      level="3"/>
+  <courses name="Operajonsanalyse"
+      code="TIØ4120"
+      level="3"/>
+  <courses name="Algoritmekonstruksjon"
+      code="TDT4125"
+      level="3"
+      taughtIn="SPRING"/>
+  <courses name="Modellbasert utvikling"
+      code="TDT4250"
+      level="4"/>
+</studyprograms:NTNU>
