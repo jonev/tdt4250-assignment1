@@ -4,7 +4,7 @@
     <semanticResources>studyprograms.ecore</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_-G0EcOUrEeq-IbHMsfbisA">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="___qccOUrEeq-IbHMsfbisA" name="studyprograms class diagram" repPath="#__-k3UOUrEeq-IbHMsfbisA" changeId="827d6d11-7b25-439d-9a52-f53c252bf7d2">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="___qccOUrEeq-IbHMsfbisA" name="studyprograms class diagram" repPath="#__-k3UOUrEeq-IbHMsfbisA" changeId="158a186e-6290-4dbe-8857-5e2b9f0747e3">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
         <target xmi:type="ecore:EPackage" href="studyprograms.ecore#/"/>
       </ownedRepresentationDescriptors>
@@ -109,6 +109,10 @@
             <children xmi:type="notation:Node" xmi:id="_eoEK0PA9Eeqf-5I-dtEwbw" type="3010" element="_enuMkPA9Eeqf-5I-dtEwbw">
               <styles xmi:type="notation:FontStyle" xmi:id="_eoEK0fA9Eeqf-5I-dtEwbw" fontName="Ubuntu" fontHeight="8"/>
               <layoutConstraint xmi:type="notation:Location" xmi:id="_eoEK0vA9Eeqf-5I-dtEwbw"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_YJT0oAKGEeuO09JuhcYk1g" type="3010" element="_YJDV8gKGEeuO09JuhcYk1g">
+              <styles xmi:type="notation:FontStyle" xmi:id="_YJT0oQKGEeuO09JuhcYk1g" fontName="Ubuntu" fontHeight="8"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_YJT0ogKGEeuO09JuhcYk1g"/>
             </children>
             <styles xmi:type="notation:SortingStyle" xmi:id="_eyEZteUsEeq-IbHMsfbisA"/>
             <styles xmi:type="notation:FilteringStyle" xmi:id="_eyEZtuUsEeq-IbHMsfbisA"/>
@@ -516,7 +520,7 @@
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_zRaNY_A9Eeqf-5I-dtEwbw" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="Liquid" foregroundColor="255,252,216">
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="___19cQKJEeuO09JuhcYk1g" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="Liquid" foregroundColor="255,252,216">
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
@@ -536,12 +540,25 @@
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
       </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_enuMkPA9Eeqf-5I-dtEwbw" name="getCoursesForSemester(maxLevel EInt, part SemesterPart) : Course" tooltipText="getCoursesForSemester(maxLevel, part) : Course">
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_enuMkPA9Eeqf-5I-dtEwbw" name="getCoursesForSemester(level EInt, part SemesterPart, courseGroupType CourseGroupeType) : Course" tooltipText="getCoursesForSemester(level, part, courseGroupType) : Course">
         <target xmi:type="ecore:EOperation" href="studyprograms.ecore#//StudyProgram/getCoursesForSemester"/>
         <semanticElements xmi:type="ecore:EOperation" href="studyprograms.ecore#//StudyProgram/getCoursesForSemester"/>
-        <semanticElements xmi:type="ecore:EParameter" href="studyprograms.ecore#//StudyProgram/getCoursesForSemester/maxLevel"/>
+        <semanticElements xmi:type="ecore:EParameter" href="studyprograms.ecore#//StudyProgram/getCoursesForSemester/courseGroupType"/>
+        <semanticElements xmi:type="ecore:EParameter" href="studyprograms.ecore#//StudyProgram/getCoursesForSemester/level"/>
         <semanticElements xmi:type="ecore:EParameter" href="studyprograms.ecore#//StudyProgram/getCoursesForSemester/part"/>
         <ownedStyle xmi:type="diagram:BundledImage" uid="_envasPA9Eeqf-5I-dtEwbw" labelAlignment="LEFT">
+          <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']"/>
+      </ownedElements>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_YJDV8gKGEeuO09JuhcYk1g" name="getCoursesForSemesterBySpecialization(level EInt, part SemesterPart, specialization Specialisations, courseGroupType CourseGroupeType) : Course" tooltipText="getCoursesForSemesterBySpecialization(level, part, specialization, courseGroupType) : Course">
+        <target xmi:type="ecore:EOperation" href="studyprograms.ecore#//StudyProgram/getCoursesForSemesterBySpecialization"/>
+        <semanticElements xmi:type="ecore:EOperation" href="studyprograms.ecore#//StudyProgram/getCoursesForSemesterBySpecialization"/>
+        <semanticElements xmi:type="ecore:EParameter" href="studyprograms.ecore#//StudyProgram/getCoursesForSemesterBySpecialization/courseGroupType"/>
+        <semanticElements xmi:type="ecore:EParameter" href="studyprograms.ecore#//StudyProgram/getCoursesForSemesterBySpecialization/level"/>
+        <semanticElements xmi:type="ecore:EParameter" href="studyprograms.ecore#//StudyProgram/getCoursesForSemesterBySpecialization/part"/>
+        <semanticElements xmi:type="ecore:EParameter" href="studyprograms.ecore#//StudyProgram/getCoursesForSemesterBySpecialization/specialization"/>
+        <ownedStyle xmi:type="diagram:BundledImage" uid="_YJEkEAKGEeuO09JuhcYk1g" labelAlignment="LEFT">
           <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']"/>

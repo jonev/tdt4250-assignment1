@@ -1,0 +1,37 @@
+h1 {
+  background-color: #8f8f8f;
+}
+
+h2 {
+  background-color: #a3a3a3;
+  position: relative;
+  left: 30px;
+}
+
+h3 {
+  background-color: #b8b8b8;
+  position: relative;
+  left: 60px;
+}
+
+h4 {
+  background-color: #c9c9c9;
+  position: relative;
+  left: 90px;
+}
+
+h5 {
+  background-color: #ededed;
+  position: relative;
+  left: 120px;
+}
+
+table {
+  background-color: #ffc7c7;
+  position: relative;
+  left: 150px;
+}
+
+td {
+  background-color: #ffe6e6;
+}

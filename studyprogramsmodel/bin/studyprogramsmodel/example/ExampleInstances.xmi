@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<studyprograms:NTNU xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:studyprograms="studyprogramsmodel" xsi:schemaLocation="studyprogramsmodel studyprograms.ecore">
+<studyprograms:NTNU xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:studyprograms="studyprogramsmodel" xsi:schemaLocation="studyprogramsmodel ../../../model/studyprograms.ecore">
   <studyprograms name="5 årig data" coursegroup="//@coursegroup.0">
     <specialisations name="Programvaresystemer 3.år" coursegroup="//@coursegroup.1 //@coursegroup.2 //@coursegroup.3"/>
     <specialisations name="Programvaresystemer 4-5. år" coursegroup="//@coursegroup.4"/>
@@ -13,13 +13,17 @@
   <courses name="Algoritmekonstruksjon" code="TDT4125" level="3" taughtIn="SPRING" coursegroups="//@coursegroup.3"/>
   <courses name="Modellbasert utvikling" code="TDT4250" level="4" coursegroups="//@coursegroup.4"/>
   <courses name="Deltagende design" code="IT3022" level="4" taughtIn="SPRING" coursegroups="//@coursegroup.3"/>
-  <coursegroup name="Obligatoriske fag 5 årig ingeniør" courses="//@courses.0 //@courses.1 //@courses.2 //@courses.3" studyprogram="//@studyprograms.0"/>
-  <coursegroup name="Programvaresystemer Obligatoriske" courses="//@courses.4" specialisations="//@studyprograms.0/@specialisations.0"/>
+  <courses name="Avansert Programvareutvikling" code="TDT4242" level="4" taughtIn="SPRING" coursegroups="//@coursegroup.4"/>
+  <courses name="Fordypning" credit="15.0" code="TDT4501" level="5" coursegroups="//@coursegroup.1"/>
+  <courses name="Masteroppgave" credit="30.0" code="TDT4900" level="5" taughtIn="SPRING" coursegroups="//@coursegroup.1"/>
+  <courses name="Matematikk 1" code="TMA4100" level="1" coursegroups="//@coursegroup.0"/>
+  <courses name="Diskrete matematikk" code="TMA4140" level="1" coursegroups="//@coursegroup.0"/>
+  <coursegroup name="Obligatoriske fag 5 årig ingeniør" courses="//@courses.0 //@courses.1 //@courses.2 //@courses.3 //@courses.12 //@courses.13" studyprogram="//@studyprograms.0"/>
+  <coursegroup name="Programvaresystemer Obligatoriske" courses="//@courses.4 //@courses.10 //@courses.11" specialisations="//@studyprograms.0/@specialisations.0"/>
   <coursegroup name="Programvaresystemer Komplemntære" courses="//@courses.5" type="ELECTIVE_CAN_CRASH" specialisations="//@studyprograms.0/@specialisations.0"/>
   <coursegroup name="Programvaresystemer Valgbare" courses="//@courses.6 //@courses.8" type="ELECTIVE_NO_CRASH" specialisations="//@studyprograms.0/@specialisations.0"/>
-  <coursegroup name="Proamvareutvikling Obligatoriske" courses="//@courses.7" specialisations="//@studyprograms.0/@specialisations.1"/>
-  <studyplan studentName="Jone V" studyprogram="//@studyprograms.0" specialisations="//@studyprograms.0/@specialisations.0 //@studyprograms.0/@specialisations.1">
-    <semester level="1" course="//@courses.0"/>
+  <coursegroup name="Proamvareutvikling Obligatoriske" courses="//@courses.7 //@courses.9" specialisations="//@studyprograms.0/@specialisations.1"/>
+  <studyplan studentName="Jone" studyprogram="//@studyprograms.0" specialisations="//@studyprograms.0/@specialisations.0">
+    <semester level="1" part="SPRING" course="//@courses.1"/>
   </studyplan>
-  <studyplan studentName="Jo" studyprogram="//@studyprograms.0"/>
 </studyprograms:NTNU>

@@ -299,8 +299,18 @@ public class StudyprogramsPackageImpl extends EPackageImpl implements Studyprogr
 	 * @generated
 	 */
 	@Override
-	public EOperation getStudyProgram__GetCoursesForSemester__int_SemesterPart() {
+	public EOperation getStudyProgram__GetCoursesForSemester__int_SemesterPart_CourseGroupeType() {
 		return studyProgramEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getStudyProgram__GetCoursesForSemesterBySpecialization__int_SemesterPart_Specialisations_CourseGroupeType() {
+		return studyProgramEClass.getEOperations().get(1);
 	}
 
 	/**
@@ -645,7 +655,8 @@ public class StudyprogramsPackageImpl extends EPackageImpl implements Studyprogr
 		createEAttribute(studyProgramEClass, STUDY_PROGRAM__NR_OF_SEMESTERS);
 		createEReference(studyProgramEClass, STUDY_PROGRAM__SPECIALISATIONS);
 		createEReference(studyProgramEClass, STUDY_PROGRAM__COURSEGROUP);
-		createEOperation(studyProgramEClass, STUDY_PROGRAM___GET_COURSES_FOR_SEMESTER__INT_SEMESTERPART);
+		createEOperation(studyProgramEClass, STUDY_PROGRAM___GET_COURSES_FOR_SEMESTER__INT_SEMESTERPART_COURSEGROUPETYPE);
+		createEOperation(studyProgramEClass, STUDY_PROGRAM___GET_COURSES_FOR_SEMESTER_BY_SPECIALIZATION__INT_SEMESTERPART_SPECIALISATIONS_COURSEGROUPETYPE);
 
 		semesterEClass = createEClass(SEMESTER);
 		createEAttribute(semesterEClass, SEMESTER__LEVEL);
@@ -731,9 +742,16 @@ public class StudyprogramsPackageImpl extends EPackageImpl implements Studyprogr
 		initEReference(getStudyProgram_Specialisations(), this.getSpecialisations(), null, "specialisations", null, 0, -1, StudyProgram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getStudyProgram_Coursegroup(), this.getCourseGroup(), this.getCourseGroup_Studyprogram(), "coursegroup", null, 0, -1, StudyProgram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		EOperation op = initEOperation(getStudyProgram__GetCoursesForSemester__int_SemesterPart(), this.getCourse(), "getCoursesForSemester", 0, -1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEInt(), "maxLevel", 0, 1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = initEOperation(getStudyProgram__GetCoursesForSemester__int_SemesterPart_CourseGroupeType(), this.getCourse(), "getCoursesForSemester", 0, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEInt(), "level", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getSemesterPart(), "part", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getCourseGroupeType(), "courseGroupType", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getStudyProgram__GetCoursesForSemesterBySpecialization__int_SemesterPart_Specialisations_CourseGroupeType(), this.getCourse(), "getCoursesForSemesterBySpecialization", 0, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEInt(), "level", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getSemesterPart(), "part", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getSpecialisations(), "specialization", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getCourseGroupeType(), "courseGroupType", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(semesterEClass, Semester.class, "Semester", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getSemester_Level(), ecorePackage.getEInt(), "level", null, 1, 1, Semester.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

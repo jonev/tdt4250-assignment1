@@ -17,8 +17,15 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StudyProgram">
     <eOperations name="getCoursesForSemester" upperBound="-1" eType="#//Course">
-      <eParameters name="maxLevel" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eParameters name="level" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       <eParameters name="part" eType="#//SemesterPart"/>
+      <eParameters name="courseGroupType" eType="#//CourseGroupeType"/>
+    </eOperations>
+    <eOperations name="getCoursesForSemesterBySpecialization" upperBound="-1" eType="#//Course">
+      <eParameters name="level" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eParameters name="part" eType="#//SemesterPart"/>
+      <eParameters name="specialization" eType="#//Specialisations"/>
+      <eParameters name="courseGroupType" eType="#//CourseGroupeType"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nrOfSemesters" lowerBound="1"

@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import studyprograms.Course;
 import studyprograms.CourseGroup;
+import studyprograms.CourseGroupeType;
 import studyprograms.SemesterPart;
 import studyprograms.Specialisations;
 import studyprograms.StudyProgram;
@@ -200,21 +201,35 @@ public class StudyProgramImpl extends MinimalEObjectImpl.Container implements St
 	 * @generated NOT
 	 */
 	@Override
-	public EList<Course> getCoursesForSemester(int maxLevel, SemesterPart part) {
+	public EList<Course> getCoursesForSemesterBySpecialization(int level, SemesterPart part, Specialisations specialization, CourseGroupeType courseGroupType) {
+			// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
 		EList<Course> list = new BasicEList<>();
-		for(CourseGroup g : this.getCoursegroup()) {
+		for(CourseGroup g : specialization.getCoursegroup()) {
+			if(g.getType() != courseGroupType) continue;
 			for(Course c : g.getCourses()) {
-				if(c.getLevel() <= maxLevel && c.getTaughtIn() == part) {
+				if(c.getLevel() == level && c.getTaughtIn() == part) { // TODO
 					list.add(c);
 				}
 			}
 		}
-		for(Specialisations s: this.getSpecialisations()) {
-			for(CourseGroup g : s.getCoursegroup()) {
-				for(Course c : g.getCourses()) {
-					if(c.getLevel() <= maxLevel && c.getTaughtIn() == part) {
-						list.add(c);
-					}
+		
+		return list;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<Course> getCoursesForSemester(int level, SemesterPart part, CourseGroupeType courseGroupType) {
+			EList<Course> list = new BasicEList<>();
+		for(CourseGroup g : this.getCoursegroup()) {
+			if(g.getType() != courseGroupType) continue;
+			for(Course c : g.getCourses()) {
+				if(c.getLevel() == level && c.getTaughtIn() == part) { // TODO
+					list.add(c);
 				}
 			}
 		}
@@ -351,8 +366,10 @@ public class StudyProgramImpl extends MinimalEObjectImpl.Container implements St
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case StudyprogramsPackage.STUDY_PROGRAM___GET_COURSES_FOR_SEMESTER__INT_SEMESTERPART:
-				return getCoursesForSemester((Integer)arguments.get(0), (SemesterPart)arguments.get(1));
+			case StudyprogramsPackage.STUDY_PROGRAM___GET_COURSES_FOR_SEMESTER__INT_SEMESTERPART_COURSEGROUPETYPE:
+				return getCoursesForSemester((Integer)arguments.get(0), (SemesterPart)arguments.get(1), (CourseGroupeType)arguments.get(2));
+			case StudyprogramsPackage.STUDY_PROGRAM___GET_COURSES_FOR_SEMESTER_BY_SPECIALIZATION__INT_SEMESTERPART_SPECIALISATIONS_COURSEGROUPETYPE:
+				return getCoursesForSemesterBySpecialization((Integer)arguments.get(0), (SemesterPart)arguments.get(1), (Specialisations)arguments.get(2), (CourseGroupeType)arguments.get(3));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

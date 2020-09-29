@@ -204,7 +204,16 @@ public interface StudyprogramsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STUDY_PROGRAM___GET_COURSES_FOR_SEMESTER__INT_SEMESTERPART = 0;
+	int STUDY_PROGRAM___GET_COURSES_FOR_SEMESTER__INT_SEMESTERPART_COURSEGROUPETYPE = 0;
+
+	/**
+	 * The operation id for the '<em>Get Courses For Semester By Specialization</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STUDY_PROGRAM___GET_COURSES_FOR_SEMESTER_BY_SPECIALIZATION__INT_SEMESTERPART_SPECIALISATIONS_COURSEGROUPETYPE = 1;
 
 	/**
 	 * The number of operations of the '<em>Study Program</em>' class.
@@ -213,7 +222,7 @@ public interface StudyprogramsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STUDY_PROGRAM_OPERATION_COUNT = 1;
+	int STUDY_PROGRAM_OPERATION_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link studyprograms.impl.SemesterImpl <em>Semester</em>}' class.
@@ -716,14 +725,24 @@ public interface StudyprogramsPackage extends EPackage {
 	EReference getStudyProgram_Coursegroup();
 
 	/**
-	 * Returns the meta object for the '{@link studyprograms.StudyProgram#getCoursesForSemester(int, studyprograms.SemesterPart) <em>Get Courses For Semester</em>}' operation.
+	 * Returns the meta object for the '{@link studyprograms.StudyProgram#getCoursesForSemester(int, studyprograms.SemesterPart, studyprograms.CourseGroupeType) <em>Get Courses For Semester</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Get Courses For Semester</em>' operation.
-	 * @see studyprograms.StudyProgram#getCoursesForSemester(int, studyprograms.SemesterPart)
+	 * @see studyprograms.StudyProgram#getCoursesForSemester(int, studyprograms.SemesterPart, studyprograms.CourseGroupeType)
 	 * @generated
 	 */
-	EOperation getStudyProgram__GetCoursesForSemester__int_SemesterPart();
+	EOperation getStudyProgram__GetCoursesForSemester__int_SemesterPart_CourseGroupeType();
+
+	/**
+	 * Returns the meta object for the '{@link studyprograms.StudyProgram#getCoursesForSemesterBySpecialization(int, studyprograms.SemesterPart, studyprograms.Specialisations, studyprograms.CourseGroupeType) <em>Get Courses For Semester By Specialization</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Courses For Semester By Specialization</em>' operation.
+	 * @see studyprograms.StudyProgram#getCoursesForSemesterBySpecialization(int, studyprograms.SemesterPart, studyprograms.Specialisations, studyprograms.CourseGroupeType)
+	 * @generated
+	 */
+	EOperation getStudyProgram__GetCoursesForSemesterBySpecialization__int_SemesterPart_Specialisations_CourseGroupeType();
 
 	/**
 	 * Returns the meta object for class '{@link studyprograms.Semester <em>Semester</em>}'.
@@ -1175,7 +1194,15 @@ public interface StudyprogramsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation STUDY_PROGRAM___GET_COURSES_FOR_SEMESTER__INT_SEMESTERPART = eINSTANCE.getStudyProgram__GetCoursesForSemester__int_SemesterPart();
+		EOperation STUDY_PROGRAM___GET_COURSES_FOR_SEMESTER__INT_SEMESTERPART_COURSEGROUPETYPE = eINSTANCE.getStudyProgram__GetCoursesForSemester__int_SemesterPart_CourseGroupeType();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Courses For Semester By Specialization</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation STUDY_PROGRAM___GET_COURSES_FOR_SEMESTER_BY_SPECIALIZATION__INT_SEMESTERPART_SPECIALISATIONS_COURSEGROUPETYPE = eINSTANCE.getStudyProgram__GetCoursesForSemesterBySpecialization__int_SemesterPart_Specialisations_CourseGroupeType();
 
 		/**
 		 * The meta object literal for the '{@link studyprograms.impl.SemesterImpl <em>Semester</em>}' class.

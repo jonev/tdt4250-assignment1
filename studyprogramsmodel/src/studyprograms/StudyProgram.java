@@ -103,6 +103,14 @@ public interface StudyProgram extends EObject {
 	 * @model
 	 * @generated
 	 */
-	EList<Course> getCoursesForSemester(int maxLevel, SemesterPart part);
+	EList<Course> getCoursesForSemester(int level, SemesterPart part, CourseGroupeType courseGroupType);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	EList<Course> getCoursesForSemesterBySpecialization(int level, SemesterPart part, Specialisations specialization, CourseGroupeType courseGroupType);
 
 } // StudyProgram

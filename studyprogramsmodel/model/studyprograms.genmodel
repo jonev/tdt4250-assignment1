@@ -33,8 +33,15 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference studyprograms.ecore#//StudyProgram/specialisations"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference studyprograms.ecore#//StudyProgram/coursegroup"/>
       <genOperations ecoreOperation="studyprograms.ecore#//StudyProgram/getCoursesForSemester">
-        <genParameters ecoreParameter="studyprograms.ecore#//StudyProgram/getCoursesForSemester/maxLevel"/>
+        <genParameters ecoreParameter="studyprograms.ecore#//StudyProgram/getCoursesForSemester/level"/>
         <genParameters ecoreParameter="studyprograms.ecore#//StudyProgram/getCoursesForSemester/part"/>
+        <genParameters ecoreParameter="studyprograms.ecore#//StudyProgram/getCoursesForSemester/courseGroupType"/>
+      </genOperations>
+      <genOperations ecoreOperation="studyprograms.ecore#//StudyProgram/getCoursesForSemesterBySpecialization">
+        <genParameters ecoreParameter="studyprograms.ecore#//StudyProgram/getCoursesForSemesterBySpecialization/level"/>
+        <genParameters ecoreParameter="studyprograms.ecore#//StudyProgram/getCoursesForSemesterBySpecialization/part"/>
+        <genParameters ecoreParameter="studyprograms.ecore#//StudyProgram/getCoursesForSemesterBySpecialization/specialization"/>
+        <genParameters ecoreParameter="studyprograms.ecore#//StudyProgram/getCoursesForSemesterBySpecialization/courseGroupType"/>
       </genOperations>
     </genClasses>
     <genClasses ecoreClass="studyprograms.ecore#//Semester">

@@ -17,31 +17,6 @@ import studyprogramsmodel.example.Studyprograms;
 class ToHtmlParserTest extends ToHtmlParser {
 
 	@Test
-	void testPrintAll() {
-		new ToHtmlParser().printAll();
-		assertTrue(true);
-	}
-	
-	@Test
-	void testCreateDocument() throws Exception {
-		ToHtmlParser parser = new ToHtmlParser();
-		EList<EObject> objects = parser.getResource(Studyprograms.class.getResource("NTNU.xmi").toString());
-		Document doc = parser.createDocument((NTNU)objects.get(0));
-		
-		System.out.println(doc.toString());
-		assertTrue(true);
-	}
-	
-	@Test
-	void testParseAll() throws Exception {
-		ToHtmlParser parser = new ToHtmlParser();
-		EList<EObject> objects = parser.getResource(Studyprograms.class.getResource("NTNU.xmi").toString());
-		Element element = parser.parse((NTNU)objects.get(0));
-		System.out.println(element.toString());
-		assertTrue(true);
-	}
-	
-	@Test
 	void testParseCourses() throws Exception {
 		ToHtmlParser parser = new ToHtmlParser();
 		Course course = StudyprogramsFactory.eINSTANCE.createCourse();
@@ -52,14 +27,14 @@ class ToHtmlParserTest extends ToHtmlParser {
 		course.setTaughtIn(SemesterPart.FALL);
 		
 		Element element = parser.parse(course);
-			
-		assertEquals("<div>\n" + 
-				" <p>Name: Informasjonsteknologi</p>\n" + 
-				" <p>Credit: 7.5</p>\n" + 
-				" <p>Code: TDTXXX</p>\n" + 
-				" <p>Level: 2</p>\n" + 
-				" <p>Taught in: FALL</p>\n" + 
-				"</div>", element.toString());
+		
+		assertEquals("<tr>\n" + 
+				" <td>Informasjonsteknologi</td>\n" + 
+				" <td>7.5</td>\n" + 
+				" <td>TDTXXX</td>\n" + 
+				" <td>2</td>\n" + 
+				" <td>FALL</td>\n" + 
+				"</tr>", element.toString());
 	}
 
 }

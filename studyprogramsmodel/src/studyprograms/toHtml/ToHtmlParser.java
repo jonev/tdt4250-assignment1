@@ -20,8 +20,10 @@ import org.jsoup.select.Elements;
 
 import studyprograms.Course;
 import studyprograms.CourseGroup;
+import studyprograms.CourseGroupeType;
 import studyprograms.NTNU;
 import studyprograms.Semester;
+import studyprograms.SemesterPart;
 import studyprograms.Specialisations;
 import studyprograms.StudyPlan;
 import studyprograms.StudyProgram;
@@ -30,17 +32,20 @@ import studyprogramsmodel.example.Studyprograms;
 
 // HTML Lib: https://jsoup.org/cookbook/extracting-data/dom-navigation
 public class ToHtmlParser {
+	private static final String DESTINATION_FILE = "/home/jone/repos/tdt4250-assignment1/studyprogramsmodel/src/studyprograms/toHtml/frakode.html";
+	
 	public static void main(String[] args) throws Exception {
 		ToHtmlParser parser = new ToHtmlParser();
-		EList<EObject> objects = parser.getResource(Studyprograms.class.getResource("NTNU.xmi").toString());
+		EList<EObject> objects = parser.getResource(Studyprograms.class.getResource("ExampleInstances.xmi").toString());
+		print(objects, "");
 		Document doc = parser.createDocument((NTNU)objects.get(0));
-		BufferedWriter writer = new BufferedWriter(new FileWriter("/home/jone/repos/tdt4250-assignment1/studyprogramsmodel/src/studyprograms/toHtml/frakode.html"));
+		BufferedWriter writer = new BufferedWriter(new FileWriter(DESTINATION_FILE));
 	    System.out.println(doc.toString());
 		writer.write(doc.toString());   
 	    writer.close();
 	}
 	
-	private final String htmlTemplate = "<html><head></head>"
+	private final String htmlTemplate = "<html><head><link rel=\"stylesheet\" href=\"styles.css\"></head>"
             + "<body></body></html>";
 	
 	public EList<EObject> getResource(String fileResource) {
@@ -50,13 +55,7 @@ public class ToHtmlParser {
 		return resSet.getResource(URI.createURI(fileResource), true).getContents();
 	}
 	
-	public void printAll() {
-		EList<EObject> list = getResource(Studyprograms.class.getResource("NTNU.xmi").toString());
-				
-		print(list, "");
-	}
-	
-	public void print(EList<EObject> list, String indent) {
+	public static void print(EList<EObject> list, String indent) {
 		for(EObject obj : list) {
 			if(obj.eContents().size() == 0) {
 				System.out.println(indent + obj.toString());
@@ -66,17 +65,6 @@ public class ToHtmlParser {
 			}
 		}
 	}
-	
-	//public Element parse(EList<EObject> list) throws Exception {
-	//	Element el = new Element(Tag.valueOf("div"), "");
-	//		if(obj.eContents().size() == 0) {
-	//			el.appendChild(parse(obj));
-	//		} else {
-	//			el.appendChild(parse(obj.eContents()));
-	//		}
-	//	}		
-	//	return el;
-	//}
 	
 	public Document createDocument(NTNU container) throws Exception {
 		Document d = Jsoup.parse(htmlTemplate);
@@ -89,26 +77,48 @@ public class ToHtmlParser {
 	
 	public Element parse(NTNU container) throws Exception {
 		Element elNtnu = new Element(Tag.valueOf("div"), "");
-		elNtnu.appendChild(getH3("NTNU fra kode"));
-		elNtnu.appendChild(getH3("Programs:"));
+		elNtnu.appendChild(getH1("NTNU"));
+		elNtnu.appendChild(getH2("Study Programs"));
+		
 		for(StudyProgram program : container.getStudyprograms()) {
 			Element elProgram = parse(program);
-			elProgram.appendChild(getH3("Specialisation:"));
 			elNtnu.appendChild(elProgram);
+			// Add courses outside of specialization
+			elProgram.appendChild(getH3("Courses"));
+			for(int i = 1; i <= program.getNrOfSemesters()/2; i++) {
+				for(CourseGroupeType type: CourseGroupeType.values()) {
+					EList<Course> coursesForSemesterFall = program.getCoursesForSemester(i, SemesterPart.FALL, type);
+					EList<Course> coursesForSemesterSpring = program.getCoursesForSemester(i, SemesterPart.SPRING, type);
+					if(coursesForSemesterFall.size() > 0) {
+						elProgram.appendChild(getH4("Year: " + i + " part: " + SemesterPart.FALL + " type: " + type));								
+						elProgram.appendChild(parse(coursesForSemesterFall));				
+					}
+					if(coursesForSemesterSpring.size() > 0) {
+						elProgram.appendChild(getH4("Year: " + i + " part: " + SemesterPart.SPRING + " type: " + type));
+						elProgram.appendChild(parse(coursesForSemesterSpring));					
+					}					
+				}
+			}
+			
+			elProgram.appendChild(getH3("Specialisations with courses"));
 			for(Specialisations spec : program.getSpecialisations()) {
 				Element elSpecialisations = parse(spec);
-				elSpecialisations.appendChild(getH3("Groups:"));
 				elProgram.appendChild(elSpecialisations);
-				for(CourseGroup group : container.getCoursegroup()) {
-					Element elGroup = parse(group);
-					elSpecialisations.appendChild(elGroup);
-					elGroup.appendChild(getH3("Courses:"));
-					for(Course c : group.getCourses()) {
-						elGroup.appendChild(parse(c));
+
+				for(int i = 1; i <= program.getNrOfSemesters()/2; i++) {
+					for(CourseGroupeType type: CourseGroupeType.values()) {
+						EList<Course> coursesForSemesterBySpecializationFall = program.getCoursesForSemesterBySpecialization(i, SemesterPart.FALL, spec, type);
+						EList<Course> coursesForSemesterBySpecializationSpring = program.getCoursesForSemesterBySpecialization(i, SemesterPart.SPRING, spec, type);
+						if(coursesForSemesterBySpecializationFall.size() > 0) {
+							elProgram.appendChild(getH4("Year: " + i + " part: " + SemesterPart.FALL + " type: " + type));
+							elProgram.appendChild(parse(coursesForSemesterBySpecializationFall));
+						}
+						if(coursesForSemesterBySpecializationSpring.size() > 0) {
+							elProgram.appendChild(getH4("Year: " + i + " part: " + SemesterPart.SPRING + " type: " + type));
+							elProgram.appendChild(parse(coursesForSemesterBySpecializationSpring));										
+						}
 					}
 				}
-				
-				
 			}
 		}
 		return elNtnu;
@@ -116,7 +126,7 @@ public class ToHtmlParser {
 	
 	public Element parse(StudyProgram program) throws Exception {
 		Element el = new Element(Tag.valueOf("div"), "");
-		el.appendChild(getP("Name", program.getName()));
+		el.appendChild(getH3(program.getName()));
 		return el;
 	}
 	
@@ -134,7 +144,7 @@ public class ToHtmlParser {
 	
 	public Element parse(Specialisations spesialisation) throws Exception {
 		Element el = new Element(Tag.valueOf("div"), "");
-		el.appendChild(getP("Name", spesialisation.getName()));
+		el.appendChild(getH3("Spesialization: " + spesialisation.getName()));
 		return el;
 	}
 
@@ -144,13 +154,33 @@ public class ToHtmlParser {
 		return el;
 	}
 	
+	public Element parse(List<Course> courses) throws Exception {
+		Element el = new Element(Tag.valueOf("table"), "");
+		el.appendChild(getCourseHeadings());
+		for(Course course : courses) {
+			el.appendChild(parse(course));
+		}
+		
+		return el;
+	}
+	
 	public Element parse(Course course) throws Exception {
-		Element el = new Element(Tag.valueOf("div"), "");
-		el.appendChild(getP("Name", course.getName()));
-		el.appendChild(getP("Credit", course.getCredit() + ""));
-		el.appendChild(getP("Code", course.getCode()));
-		el.appendChild(getP("Level", course.getLevel() + ""));
-		el.appendChild(getP("Taught in", course.getTaughtIn()+ ""));
+		Element el = getTr();
+		el.appendChild(getTd(course.getName()));
+		el.appendChild(getTd(course.getCredit() + ""));
+		el.appendChild(getTd(course.getCode()));
+		el.appendChild(getTd(course.getLevel() + ""));
+		el.appendChild(getTd(course.getTaughtIn()+ ""));
+		return el;
+	}
+	
+	public Element getCourseHeadings() throws Exception {
+		Element el = getTr();
+		el.appendChild(getTh("Name"));
+		el.appendChild(getTh("Credit"));
+		el.appendChild(getTh("Code"));
+		el.appendChild(getTh("Level"));
+		el.appendChild(getTh("Taught in"));
 		return el;
 	}
 	
@@ -160,8 +190,43 @@ public class ToHtmlParser {
 		return el;
 	}
 	
+	private Element getTr() {
+		Element el = new Element(Tag.valueOf("tr"), "");
+		return el;
+	}
+	
+	private Element getTh(String value) {
+		Element el = new Element(Tag.valueOf("th"), "");
+		el.appendText(value);
+		return el;
+	}
+	
+	private Element getTd(String value) {
+		Element el = new Element(Tag.valueOf("td"), "");
+		el.appendText(value);
+		return el;
+	}
+	
+	private Element getH1(String value) {
+		Element el = new Element(Tag.valueOf("h1"), "");
+		el.appendText(value);
+		return el;
+	}
+	
+	private Element getH2(String value) {
+		Element el = new Element(Tag.valueOf("h2"), "");
+		el.appendText(value);
+		return el;
+	}
+	
 	private Element getH3(String value) {
 		Element el = new Element(Tag.valueOf("h3"), "");
+		el.appendText(value);
+		return el;
+	}
+	
+	private Element getH4(String value) {
+		Element el = new Element(Tag.valueOf("h4"), "");
 		el.appendText(value);
 		return el;
 	}

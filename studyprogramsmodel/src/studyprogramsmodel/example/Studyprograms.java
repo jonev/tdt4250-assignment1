@@ -25,7 +25,7 @@ import studyprograms.toHtml.ToHtmlParser;
 public class Studyprograms {
 	public static void main(String[] args) throws Exception {
 		ToHtmlParser parser = new ToHtmlParser();
-		EList<EObject> objects = parser.getResource(Studyprograms.class.getResource("NTNU.xmi").toString());
+		EList<EObject> objects = parser.getResource(Studyprograms.class.getResource("ExampleInstances.xmi").toString());
 		Document doc = parser.createDocument((NTNU)objects.get(0));
 		BufferedWriter writer = new BufferedWriter(new FileWriter("frakode.html"));
 	    System.out.println(doc.toString());

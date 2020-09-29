@@ -22,7 +22,8 @@ import studyprograms.impl.StudyprogramsFactoryImpl;
  * <p>
  * The following operations are tested:
  * <ul>
- *   <li>{@link studyprograms.StudyProgram#getCoursesForSemester(int, studyprograms.SemesterPart) <em>Get Courses For Semester</em>}</li>
+ *   <li>{@link studyprograms.StudyProgram#getCoursesForSemester(int, studyprograms.SemesterPart, studyprograms.CourseGroupeType) <em>Get Courses For Semester</em>}</li>
+ *   <li>{@link studyprograms.StudyProgram#getCoursesForSemesterBySpecialization(int, studyprograms.SemesterPart, studyprograms.Specialisations, studyprograms.CourseGroupeType) <em>Get Courses For Semester By Specialization</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -96,6 +97,32 @@ public class StudyProgramTest extends TestCase {
 	@Override
 	protected void tearDown() throws Exception {
 		setFixture(null);
+	}
+
+	/**
+	 * Tests the '{@link studyprograms.StudyProgram#getCoursesForSemester(int, studyprograms.SemesterPart, studyprograms.CourseGroupeType) <em>Get Courses For Semester</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see studyprograms.StudyProgram#getCoursesForSemester(int, studyprograms.SemesterPart, studyprograms.CourseGroupeType)
+	 * @generated
+	 */
+	public void testGetCoursesForSemester__int_SemesterPart_CourseGroupeType() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link studyprograms.StudyProgram#getCoursesForSemesterBySpecialization(int, studyprograms.SemesterPart, studyprograms.Specialisations, studyprograms.CourseGroupeType) <em>Get Courses For Semester By Specialization</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see studyprograms.StudyProgram#getCoursesForSemesterBySpecialization(int, studyprograms.SemesterPart, studyprograms.Specialisations, studyprograms.CourseGroupeType)
+	 * @generated
+	 */
+	public void testGetCoursesForSemesterBySpecialization__int_SemesterPart_Specialisations_CourseGroupeType() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
 	}
 
 	/**
