@@ -227,7 +227,7 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 	public String getName() {
 		if(this.eContainer() instanceof StudyPlan) {
 			StudyPlan plan = (StudyPlan)this.eContainer();
-			return plan.getStudentName() + " level " + this.getLevel() + " part " + this.getPart();
+			return plan.getStudentName() + ": level; " + this.getLevel() + " part; " + this.getPart();
 		} else
 		{
 			return "ERROR";

@@ -3,6 +3,7 @@
   <studyprograms name="5 årig data" coursegroup="//@coursegroup.0">
     <specialisations name="Programvaresystemer 3.år" coursegroup="//@coursegroup.1 //@coursegroup.2 //@coursegroup.3"/>
     <specialisations name="Programvaresystemer 4-5. år" coursegroup="//@coursegroup.4"/>
+    <specialisations name="Digital Virksomhetsutvikling 4-5år" coursegroup="//@coursegroup.5 //@coursegroup.6"/>
   </studyprograms>
   <courses name="Informasjonsteknologi" code="TDT4110" level="1" coursegroups="//@coursegroup.0"/>
   <courses name="Objektorientert programmering" code="TDT4100" level="1" taughtIn="SPRING" coursegroups="//@coursegroup.0"/>
@@ -18,12 +19,20 @@
   <courses name="Masteroppgave" credit="30.0" code="TDT4900" level="5" taughtIn="SPRING" coursegroups="//@coursegroup.1"/>
   <courses name="Matematikk 1" code="TMA4100" level="1" coursegroups="//@coursegroup.0"/>
   <courses name="Diskrete matematikk" code="TMA4140" level="1" coursegroups="//@coursegroup.0"/>
+  <courses name="Virksomhets-arkitektur og -innovasjon" code="TDT4252" level="4" coursegroups="//@coursegroup.5"/>
+  <courses name="Arkitektur som teknologisk praksis" code="AAR4250" level="5" coursegroups="//@coursegroup.6"/>
   <coursegroup name="Obligatoriske fag 5 årig ingeniør" courses="//@courses.0 //@courses.1 //@courses.2 //@courses.3 //@courses.12 //@courses.13" studyprogram="//@studyprograms.0"/>
   <coursegroup name="Programvaresystemer Obligatoriske" courses="//@courses.4 //@courses.10 //@courses.11" specialisations="//@studyprograms.0/@specialisations.0"/>
   <coursegroup name="Programvaresystemer Komplemntære" courses="//@courses.5" type="ELECTIVE_CAN_CRASH" specialisations="//@studyprograms.0/@specialisations.0"/>
   <coursegroup name="Programvaresystemer Valgbare" courses="//@courses.6 //@courses.8" type="ELECTIVE_NO_CRASH" specialisations="//@studyprograms.0/@specialisations.0"/>
   <coursegroup name="Proamvareutvikling Obligatoriske" courses="//@courses.7 //@courses.9" specialisations="//@studyprograms.0/@specialisations.1"/>
+  <coursegroup name="Obligatoriske Digital Viksomhetsutvikling" courses="//@courses.14" type="ELECTIVE_CAN_CRASH" specialisations="//@studyprograms.0/@specialisations.2"/>
+  <coursegroup name="Digital virksomhetsutvikling Komplementære" courses="//@courses.15" specialisations="//@studyprograms.0/@specialisations.2"/>
   <studyplan studentName="Jone" studyprogram="//@studyprograms.0" specialisations="//@studyprograms.0/@specialisations.0">
     <semester level="1" part="SPRING" course="//@courses.1"/>
+    <semester level="1" course="//@courses.12"/>
+    <semester level="2" course="//@courses.2"/>
+    <semester level="2" part="SPRING" course="//@courses.3"/>
+    <semester level="3" course="//@courses.4 //@courses.5"/>
   </studyplan>
 </studyprograms:NTNU>

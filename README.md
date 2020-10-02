@@ -1,4 +1,21 @@
-# Info
+# Assignment 2
+
+## Changes from assignment 1 to 2
+
+- StudyProgram: `getCoursesForSemester(maxLevel, part)` is changed to two methods: `getCoursesForSemester(level, part, groupType)` and `getCoursesForSemesterBySpecialization(level, part, specialization, groupType)` this is to be able to fetch courses more specific to how the view looks like.
+
+## Produced HTML
+
+Open the file by clicking [here](./studyprogramsmodel/src/studyprograms/toHtml/ExampleInstances.html) or open `./studyprogramsmodel/src/studyprograms/toHtml/ExampleInstances.html`
+
+## Run model transformation
+
+The `xmi` model used in the transformation is `./studyprogramsmodel/src/studyprogramsmodel/example/ExampleInstaces.xmi`
+
+1. Add `./external-jars/jsoup-1.13.1.jar` to the project: `Project->Properties->Java Build Path->Libraries->Add External JARs`
+2. Run the model transformation by running the `main()` method in this file: `./studyprogramsmodel/src/studyprograms/toHtml/ToHmtlParser.java`
+
+# Assignment 1
 
 ## Datamodel
 

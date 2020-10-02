@@ -32,7 +32,7 @@ import studyprogramsmodel.example.Studyprograms;
 
 // HTML Lib: https://jsoup.org/cookbook/extracting-data/dom-navigation
 public class ToHtmlParser {
-	private static final String DESTINATION_FILE = "/home/jone/repos/tdt4250-assignment1/studyprogramsmodel/src/studyprograms/toHtml/frakode.html";
+	private static final String DESTINATION_FILE = "./src/studyprograms/toHtml/ExampleInstances.html";
 	
 	public static void main(String[] args) throws Exception {
 		ToHtmlParser parser = new ToHtmlParser();
@@ -68,7 +68,7 @@ public class ToHtmlParser {
 	
 	public Document createDocument(NTNU container) throws Exception {
 		Document d = Jsoup.parse(htmlTemplate);
-		d.title("StudyPrograms overview fra kode");
+		d.title("StudyPrograms and StudyPlan overview");
 		Element el = parse(container);
 		d.body().appendChild(el);
 		return d;
@@ -84,67 +84,85 @@ public class ToHtmlParser {
 			Element elProgram = parse(program);
 			elNtnu.appendChild(elProgram);
 			// Add courses outside of specialization
-			elProgram.appendChild(getH3("Courses"));
-			for(int i = 1; i <= program.getNrOfSemesters()/2; i++) {
-				for(CourseGroupeType type: CourseGroupeType.values()) {
-					EList<Course> coursesForSemesterFall = program.getCoursesForSemester(i, SemesterPart.FALL, type);
-					EList<Course> coursesForSemesterSpring = program.getCoursesForSemester(i, SemesterPart.SPRING, type);
+			elProgram.appendChild(getH4("Courses"));
+			// Collecting courses for each year
+			for(int year = 1; year <= program.getNrOfSemesters()/2; year++) {
+				// Collecting courses for each course type: MANDATORY, ELECTIVE_CAN_CRASH, ELECTIVE_NO_CRASH
+				for(CourseGroupeType courseType: CourseGroupeType.values()) {
+					// Collecting courses for each semester
+					EList<Course> coursesForSemesterFall = program.getCoursesForSemester(year, SemesterPart.FALL, courseType);
+					EList<Course> coursesForSemesterSpring = program.getCoursesForSemester(year, SemesterPart.SPRING, courseType);
+					// If courses exist, heading and courses are added to the HTML
 					if(coursesForSemesterFall.size() > 0) {
-						elProgram.appendChild(getH4("Year: " + i + " part: " + SemesterPart.FALL + " type: " + type));								
+						elProgram.appendChild(getH5("Year: " + year + " part: " + SemesterPart.FALL + " type: " + courseType));								
 						elProgram.appendChild(parse(coursesForSemesterFall));				
 					}
 					if(coursesForSemesterSpring.size() > 0) {
-						elProgram.appendChild(getH4("Year: " + i + " part: " + SemesterPart.SPRING + " type: " + type));
+						elProgram.appendChild(getH5("Year: " + year + " part: " + SemesterPart.SPRING + " type: " + courseType));
 						elProgram.appendChild(parse(coursesForSemesterSpring));					
 					}					
 				}
 			}
 			
-			elProgram.appendChild(getH3("Specialisations with courses"));
+			// Collecting courses fore each specialization in the same matter as the courses that are not specialization dependent (above)
+			elProgram.appendChild(getH4("Specializations with courses:"));
 			for(Specialisations spec : program.getSpecialisations()) {
-				Element elSpecialisations = parse(spec);
-				elProgram.appendChild(elSpecialisations);
+				Element elSpecializations = parse(spec);
+				elProgram.appendChild(elSpecializations);
 
-				for(int i = 1; i <= program.getNrOfSemesters()/2; i++) {
+				for(int year = 1; year <= program.getNrOfSemesters()/2; year++) {
 					for(CourseGroupeType type: CourseGroupeType.values()) {
-						EList<Course> coursesForSemesterBySpecializationFall = program.getCoursesForSemesterBySpecialization(i, SemesterPart.FALL, spec, type);
-						EList<Course> coursesForSemesterBySpecializationSpring = program.getCoursesForSemesterBySpecialization(i, SemesterPart.SPRING, spec, type);
+						EList<Course> coursesForSemesterBySpecializationFall = program.getCoursesForSemesterBySpecialization(year, SemesterPart.FALL, spec, type);
+						EList<Course> coursesForSemesterBySpecializationSpring = program.getCoursesForSemesterBySpecialization(year, SemesterPart.SPRING, spec, type);
 						if(coursesForSemesterBySpecializationFall.size() > 0) {
-							elProgram.appendChild(getH4("Year: " + i + " part: " + SemesterPart.FALL + " type: " + type));
+							elProgram.appendChild(getH5("Year: " + year + " part: " + SemesterPart.FALL + " type: " + type));
 							elProgram.appendChild(parse(coursesForSemesterBySpecializationFall));
 						}
 						if(coursesForSemesterBySpecializationSpring.size() > 0) {
-							elProgram.appendChild(getH4("Year: " + i + " part: " + SemesterPart.SPRING + " type: " + type));
+							elProgram.appendChild(getH5("Year: " + year + " part: " + SemesterPart.SPRING + " type: " + type));
 							elProgram.appendChild(parse(coursesForSemesterBySpecializationSpring));										
 						}
 					}
 				}
 			}
 		}
+		// Appending the chosen study plans to the model
+		elNtnu.appendChild(getH2("Study Plans"));
+		for(StudyPlan plan : container.getStudyplan()) {
+			Element elPlan = parse(plan);
+			elNtnu.appendChild(elPlan);
+			for(Semester semester : plan.getSemester()) {
+				Element elSemester = parse(semester);
+				elPlan.appendChild(elSemester);
+				elSemester.appendChild(parse(semester.getCourse()));
+			}
+		}
+		
 		return elNtnu;
 	}
 	
 	public Element parse(StudyProgram program) throws Exception {
 		Element el = new Element(Tag.valueOf("div"), "");
 		el.appendChild(getH3(program.getName()));
+		el.appendChild(getH4("Number of semesters" + program.getNrOfSemesters()));
 		return el;
 	}
 	
 	public Element parse(StudyPlan plan) throws Exception {
 		Element el = new Element(Tag.valueOf("div"), "");
-		el.appendChild(getP("Student Name", plan.getStudentName()));
+		el.appendChild(getH3("Student Name: " + plan.getStudentName()));
 		return el;
 	}
 	
 	public Element parse(Semester semester) throws Exception {
 		Element el = new Element(Tag.valueOf("div"), "");
-		el.appendChild(getP("Semester Name", semester.getName()));
+		el.appendChild(getH4("Semester: " + semester.getName()));
 		return el;
 	}
 	
 	public Element parse(Specialisations spesialisation) throws Exception {
 		Element el = new Element(Tag.valueOf("div"), "");
-		el.appendChild(getH3("Spesialization: " + spesialisation.getName()));
+		el.appendChild(getH4("Spesialization: " + spesialisation.getName()));
 		return el;
 	}
 
@@ -167,10 +185,10 @@ public class ToHtmlParser {
 	public Element parse(Course course) throws Exception {
 		Element el = getTr();
 		el.appendChild(getTd(course.getName()));
-		el.appendChild(getTd(course.getCredit() + ""));
+		el.appendChild(getTd(String.valueOf(course.getCredit())));
 		el.appendChild(getTd(course.getCode()));
-		el.appendChild(getTd(course.getLevel() + ""));
-		el.appendChild(getTd(course.getTaughtIn()+ ""));
+		el.appendChild(getTd(String.valueOf(course.getLevel())));
+		el.appendChild(getTd(String.valueOf(course.getTaughtIn())));
 		return el;
 	}
 	
@@ -227,6 +245,12 @@ public class ToHtmlParser {
 	
 	private Element getH4(String value) {
 		Element el = new Element(Tag.valueOf("h4"), "");
+		el.appendText(value);
+		return el;
+	}
+	
+	private Element getH5(String value) {
+		Element el = new Element(Tag.valueOf("h5"), "");
 		el.appendText(value);
 		return el;
 	}
