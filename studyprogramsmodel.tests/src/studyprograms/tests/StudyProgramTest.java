@@ -104,35 +104,9 @@ public class StudyProgramTest extends TestCase {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see studyprograms.StudyProgram#getCoursesForSemester(int, studyprograms.SemesterPart, studyprograms.CourseGroupeType)
-	 * @generated
-	 */
-	public void testGetCoursesForSemester__int_SemesterPart_CourseGroupeType() {
-		// TODO: implement this operation test method
-		// Ensure that you remove @generated or mark it @generated NOT
-		fail();
-	}
-
-	/**
-	 * Tests the '{@link studyprograms.StudyProgram#getCoursesForSemesterBySpecialization(int, studyprograms.SemesterPart, studyprograms.Specialisations, studyprograms.CourseGroupeType) <em>Get Courses For Semester By Specialization</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see studyprograms.StudyProgram#getCoursesForSemesterBySpecialization(int, studyprograms.SemesterPart, studyprograms.Specialisations, studyprograms.CourseGroupeType)
-	 * @generated
-	 */
-	public void testGetCoursesForSemesterBySpecialization__int_SemesterPart_Specialisations_CourseGroupeType() {
-		// TODO: implement this operation test method
-		// Ensure that you remove @generated or mark it @generated NOT
-		fail();
-	}
-
-	/**
-	 * Tests the '{@link studyprograms.StudyProgram#getCoursesForSemester(int, studyprograms.SemesterPart) <em>Get Courses For Semester</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see studyprograms.StudyProgram#getCoursesForSemester(int, studyprograms.SemesterPart)
 	 * @generated NOT
 	 */
-	public void testGetCoursesForSemester__int_SemesterPart() {
+	public void testGetCoursesForSemester__int_SemesterPart_CourseGroupeType() {
 		StudyProgram program = StudyprogramsFactory.eINSTANCE.createStudyProgram();
 		CourseGroup group = StudyprogramsFactory.eINSTANCE.createCourseGroup();
 		Course course = StudyprogramsFactory.eINSTANCE.createCourse();
@@ -151,13 +125,22 @@ public class StudyProgramTest extends TestCase {
 		group.getCourses().add(course2);
 		group.getCourses().add(course3);
 		
-		assertEquals(1, program.getCoursesForSemester(1, SemesterPart.FALL).size());
-		assertEquals(2, program.getCoursesForSemester(2, SemesterPart.FALL).size());
-		assertEquals(1, program.getCoursesForSemester(2, SemesterPart.SPRING).size());
-		assertEquals(0, program.getCoursesForSemester(1, SemesterPart.SPRING).size());
-		assertEquals(0, program.getCoursesForSemester(1, SemesterPart.SPRING).size());
-		
-		
+		assertEquals(1, program.getCoursesForSemester(1, SemesterPart.FALL, group.getType()).size());
+		assertEquals(1, program.getCoursesForSemester(2, SemesterPart.FALL, group.getType()).size());
+		assertEquals(1, program.getCoursesForSemester(2, SemesterPart.SPRING, group.getType()).size());
+		assertEquals(0, program.getCoursesForSemester(1, SemesterPart.SPRING, group.getType()).size());
+		assertEquals(0, program.getCoursesForSemester(1, SemesterPart.SPRING, group.getType()).size());
+	}
+
+	/**
+	 * Tests the '{@link studyprograms.StudyProgram#getCoursesForSemesterBySpecialization(int, studyprograms.SemesterPart, studyprograms.Specialisations, studyprograms.CourseGroupeType) <em>Get Courses For Semester By Specialization</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see studyprograms.StudyProgram#getCoursesForSemesterBySpecialization(int, studyprograms.SemesterPart, studyprograms.Specialisations, studyprograms.CourseGroupeType)
+	 * @generated NOT
+	 */
+	public void testGetCoursesForSemesterBySpecialization__int_SemesterPart_Specialisations_CourseGroupeType() {
+		StudyProgram program = StudyprogramsFactory.eINSTANCE.createStudyProgram();
 		Specialisations spes = StudyprogramsFactory.eINSTANCE.createSpecialisations();
 		program.getSpecialisations().add(spes);
 		CourseGroup group2 = StudyprogramsFactory.eINSTANCE.createCourseGroup();
@@ -167,19 +150,18 @@ public class StudyProgramTest extends TestCase {
 		course4.setTaughtIn(SemesterPart.FALL);
 		group2.getCourses().add(course4);
 		
-		assertEquals(2, program.getCoursesForSemester(1, SemesterPart.FALL).size());
-		assertEquals(3, program.getCoursesForSemester(2, SemesterPart.FALL).size());
-		assertEquals(0, program.getCoursesForSemester(1, SemesterPart.SPRING).size());
+		assertEquals(1, program.getCoursesForSemesterBySpecialization(1, SemesterPart.FALL, spes, group2.getType()).size());
+		assertEquals(0, program.getCoursesForSemesterBySpecialization(2, SemesterPart.FALL, spes, group2.getType()).size());
+		assertEquals(0, program.getCoursesForSemesterBySpecialization(1, SemesterPart.SPRING, spes, group2.getType()).size());
 		
 		Course course5 = StudyprogramsFactory.eINSTANCE.createCourse();
 		course5.setLevel(2);
 		course5.setTaughtIn(SemesterPart.FALL);
 		group2.getCourses().add(course5);
 		
-		assertEquals(2, program.getCoursesForSemester(1, SemesterPart.FALL).size());
-		assertEquals(4, program.getCoursesForSemester(2, SemesterPart.FALL).size());
-		assertEquals(0, program.getCoursesForSemester(1, SemesterPart.SPRING).size());
-				
+		assertEquals(1, program.getCoursesForSemesterBySpecialization(1, SemesterPart.FALL, spes, group2.getType()).size());
+		assertEquals(1, program.getCoursesForSemesterBySpecialization(2, SemesterPart.FALL, spes, group2.getType()).size());
+		assertEquals(0, program.getCoursesForSemesterBySpecialization(1, SemesterPart.SPRING, spes, group2.getType()).size());
 	}
 	
 	/**

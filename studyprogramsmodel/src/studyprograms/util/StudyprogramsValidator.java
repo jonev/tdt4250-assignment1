@@ -158,7 +158,6 @@ public class StudyprogramsValidator extends EObjectValidator {
 	 * @generated NOT
 	 */
 	public boolean validateSemester_coursesHasRightLevel(Semester semester, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO
 		boolean error = false;
 		for(Course course : semester.getCourse()) {
 			if(course.getLevel() > semester.getLevel()) {
@@ -190,7 +189,6 @@ public class StudyprogramsValidator extends EObjectValidator {
 	 * @generated NOT
 	 */
 	public boolean validateSemester_taughtAtTheRigthTimeOfTheYear(Semester semester, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO
 		boolean error = false;
 		for(Course course : semester.getCourse()) {
 			if(course.getTaughtIn() != semester.getPart()) {

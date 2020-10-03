@@ -202,13 +202,11 @@ public class StudyProgramImpl extends MinimalEObjectImpl.Container implements St
 	 */
 	@Override
 	public EList<Course> getCoursesForSemesterBySpecialization(int level, SemesterPart part, Specialisations specialization, CourseGroupeType courseGroupType) {
-			// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
 		EList<Course> list = new BasicEList<>();
 		for(CourseGroup g : specialization.getCoursegroup()) {
 			if(g.getType() != courseGroupType) continue;
 			for(Course c : g.getCourses()) {
-				if(c.getLevel() == level && c.getTaughtIn() == part) { // TODO
+				if(c.getLevel() == level && c.getTaughtIn() == part) {
 					list.add(c);
 				}
 			}
@@ -228,7 +226,7 @@ public class StudyProgramImpl extends MinimalEObjectImpl.Container implements St
 		for(CourseGroup g : this.getCoursegroup()) {
 			if(g.getType() != courseGroupType) continue;
 			for(Course c : g.getCourses()) {
-				if(c.getLevel() == level && c.getTaughtIn() == part) { // TODO
+				if(c.getLevel() == level && c.getTaughtIn() == part) {
 					list.add(c);
 				}
 			}
