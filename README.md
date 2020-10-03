@@ -3,17 +3,18 @@
 ## Changes from assignment 1 to 2
 
 - StudyProgram: `getCoursesForSemester(maxLevel, part)` is changed to two methods: `getCoursesForSemester(level, part, groupType)` and `getCoursesForSemesterBySpecialization(level, part, specialization, groupType)` this is to be able to fetch courses more specific to how the view looks like.
+- Some renaming
 
 ## Produced HTML
 
-Open the file by clicking [here](./studyprogramsmodel/src/studyprograms/toHtml/ExampleInstances.html) or open `./studyprogramsmodel/src/studyprograms/toHtml/ExampleInstances.html`
+Open the file by clicking [here](./studyprograms.model/src/studyprograms/toHtml/ExampleInstances.html) or open `./studyprograms.model/src/studyprograms/toHtml/ExampleInstances.html`
 
 ## Run model transformation
 
-The `xmi` model used in the transformation is `./studyprogramsmodel/src/studyprogramsmodel/example/ExampleInstaces.xmi`
+The `xmi` model used in the transformation is `./studyprograms.model/src/studyprograms.model/example/ExampleInstaces.xmi`
 
 1. Add `./external-jars/jsoup-1.13.1.jar` to the project: `Project->Properties->Java Build Path->Libraries->Add External JARs`
-2. Run the model transformation by running the `main()` method in this file: `./studyprogramsmodel/src/studyprograms/toHtml/ToHmtlParser.java`
+2. Run the model transformation by running the `main()` method in this file: `./studyprograms.model/src/studyprograms/toHtml/ToHmtlParser.java`
 
 # Assignment 1
 
@@ -38,12 +39,12 @@ Study plan
 
 # Repo structure
 
-- studyprogramsmodel/model - contains models for generation of code
-- studyprogramsmodel/model/NTNU.xmi - Instance data
-- studyprogramsmodel/model/studyprograms.aird - Model - opens with Sirius
-- studyprogramsmodel/model/studyprograms.ecore - ecore model - not possible to open because Sirius is used
-- studyprogramsmodel/src - contains the auto generated code
-- studyprogramsmodel.tests/src - unit tests
+- studyprograms.model/model - contains models for generation of code
+- studyprograms.model/model/NTNU.xmi - Instance data
+- studyprograms.model/model/studyprograms.aird - Model - opens with Sirius
+- studyprograms.model/model/studyprograms.ecore - ecore model - not possible to open because Sirius is used
+- studyprograms.model/src - contains the auto generated code
+- studyprograms.model.tests/src - unit tests
 
 # Implemeted Ecore features
 
