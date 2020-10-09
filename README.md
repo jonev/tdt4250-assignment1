@@ -37,7 +37,7 @@ Study plan
 - When a student creates a student plan, he/she have to choose a study program and specializations. When this is done, the student can start to plan a semester.
 - When a semester is created, the study program part of the data model defines which courses it is possible to choose. By calling the function `StudyProgram.getCoursesForSemester()` the student will receive a list of courses he/she can attend.
 
-# Repo structure
+## Repo structure
 
 - studyprograms.model/model - contains models for generation of code
 - studyprograms.model/model/NTNU.xmi - Instance data
@@ -46,34 +46,34 @@ Study plan
 - studyprograms.model/src - contains the auto generated code
 - studyprograms.model.tests/src - unit tests
 
-# Implemeted Ecore features
+## Implemeted Ecore features
 
 - To demonstrate different aspects EMF/ecore, some functionality is implemented twice, with different methods.
 
-## Operations
+### Operations
 
 - StudyProgramImpl: getCoursesForSemesters(Eint maxLevel, SemesterPart part)
 - StudyPlanImpl: addSemester(Semester semester) - Validates the adding
 - SemesterImpl: addCourse(Course course) - Validates the adding
 
-## Derived feature
+### Derived feature
 
 - Semester.name
 
-## OCL constraint
+### OCL constraint
 
 - StudyPlan: nrOfSemestersIsOk
 
-## Manual written validation
+### Manual written validation
 
 - StudyprogramsValidator: validateSemester_taughtAtTheRigthTimeOfTheYear
 - StudyprogramsValidator: validateSemester_coursesHasRightLevel
 
-## Datatype with constraint
+### Datatype with constraint
 
 - StudentId
 
-## Unit tests
+### Unit tests
 
 - All ecore requested unit test are implemented
 - Test for manually written validators added in studyprograms.tests/StudyprogramsValidatorTest.java

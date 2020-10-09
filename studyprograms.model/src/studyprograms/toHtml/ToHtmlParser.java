@@ -2,13 +2,11 @@ package studyprograms.toHtml;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
@@ -16,7 +14,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.parser.Tag;
-import org.jsoup.select.Elements;
+
 
 import studyprograms.Course;
 import studyprograms.CourseGroup;
@@ -37,11 +35,12 @@ public class ToHtmlParser {
 	public static void main(String[] args) throws Exception {
 		ToHtmlParser parser = new ToHtmlParser();
 		EList<EObject> objects = parser.getResource(Studyprograms.class.getResource("ExampleInstances.xmi").toString());
-		print(objects, "");
+		print(objects, ""); // For debugging
+		// Transform the instance of NTNU to HTML
 		Document doc = parser.createDocument((NTNU)objects.get(0));
 		BufferedWriter writer = new BufferedWriter(new FileWriter(DESTINATION_FILE));
-	    System.out.println(doc.toString());
-		writer.write(doc.toString());   
+	    System.out.println(doc.toString()); // For debugging
+		writer.write(doc.toString()); // Writes the HTML instance to file
 	    writer.close();
 	}
 	
@@ -74,7 +73,7 @@ public class ToHtmlParser {
 		return d;
 	}
 		
-	
+	// Parses and builds the structure of the HTML instance
 	public Element parse(NTNU container) throws Exception {
 		Element elNtnu = new Element(Tag.valueOf("div"), "");
 		elNtnu.appendChild(getH1("NTNU"));
@@ -83,6 +82,7 @@ public class ToHtmlParser {
 		for(StudyProgram program : container.getStudyprograms()) {
 			Element elProgram = parse(program);
 			elNtnu.appendChild(elProgram);
+			
 			// Add courses outside of specialization
 			elProgram.appendChild(getH4("Courses"));
 			// Collecting courses for each year
@@ -92,6 +92,7 @@ public class ToHtmlParser {
 					// Collecting courses for each semester
 					EList<Course> coursesForSemesterFall = program.getCoursesForSemester(year, SemesterPart.FALL, courseType);
 					EList<Course> coursesForSemesterSpring = program.getCoursesForSemester(year, SemesterPart.SPRING, courseType);
+					
 					// If courses exist, heading and courses are added to the HTML
 					if(coursesForSemesterFall.size() > 0) {
 						elProgram.appendChild(getH5("Year: " + year + " part: " + SemesterPart.FALL + " type: " + courseType));								
@@ -105,7 +106,10 @@ public class ToHtmlParser {
 			}
 			
 			// Collecting courses fore each specialization in the same matter as the courses that are not specialization dependent (above)
-			elProgram.appendChild(getH4("Specializations with courses:"));
+			if(program.getSpecialisations().size() > 0) {
+				elProgram.appendChild(getH4("Specializations with courses:"));	
+			}
+			
 			for(Specialisations spec : program.getSpecialisations()) {
 				Element elSpecializations = parse(spec);
 				elProgram.appendChild(elSpecializations);
@@ -114,6 +118,7 @@ public class ToHtmlParser {
 					for(CourseGroupeType type: CourseGroupeType.values()) {
 						EList<Course> coursesForSemesterBySpecializationFall = program.getCoursesForSemesterBySpecialization(year, SemesterPart.FALL, spec, type);
 						EList<Course> coursesForSemesterBySpecializationSpring = program.getCoursesForSemesterBySpecialization(year, SemesterPart.SPRING, spec, type);
+						
 						if(coursesForSemesterBySpecializationFall.size() > 0) {
 							elProgram.appendChild(getH5("Year: " + year + " part: " + SemesterPart.FALL + " type: " + type));
 							elProgram.appendChild(parse(coursesForSemesterBySpecializationFall));
@@ -131,6 +136,7 @@ public class ToHtmlParser {
 		for(StudyPlan plan : container.getStudyplan()) {
 			Element elPlan = parse(plan);
 			elNtnu.appendChild(elPlan);
+			
 			for(Semester semester : plan.getSemester()) {
 				Element elSemester = parse(semester);
 				elPlan.appendChild(elSemester);
@@ -141,10 +147,44 @@ public class ToHtmlParser {
 		return elNtnu;
 	}
 	
+	// Parses list of courses to a table
+	public Element parse(List<Course> courses) throws Exception {
+		Element el = new Element(Tag.valueOf("table"), "");
+		el.appendChild(getCourseHeadings());
+		for(Course course : courses) {
+			el.appendChild(parse(course));
+		}	
+		return el;
+	}
+	
+	// Creates heading for the courses table
+	public Element getCourseHeadings() throws Exception {
+		Element el = getTr();
+		el.appendChild(getTh("Name"));
+		el.appendChild(getTh("Credit"));
+		el.appendChild(getTh("Code"));
+		el.appendChild(getTh("Level"));
+		el.appendChild(getTh("Taught in"));
+		return el;
+	}
+	
+	// Parses a course to a row in the table
+	public Element parse(Course course) throws Exception {
+		Element el = getTr();
+		el.appendChild(getTd(course.getName()));
+		el.appendChild(getTd(String.valueOf(course.getCredit())));
+		el.appendChild(getTd(course.getCode()));
+		el.appendChild(getTd(String.valueOf(course.getLevel())));
+		el.appendChild(getTd(String.valueOf(course.getTaughtIn())));
+		return el;
+	}
+	
+	// Rest of the methods pares singl objects to HTML objects
+	
 	public Element parse(StudyProgram program) throws Exception {
 		Element el = new Element(Tag.valueOf("div"), "");
 		el.appendChild(getH3(program.getName()));
-		el.appendChild(getH4("Number of semesters" + program.getNrOfSemesters()));
+		el.appendChild(getH4("Number of semesters: " + program.getNrOfSemesters()));
 		return el;
 	}
 	
@@ -171,37 +211,7 @@ public class ToHtmlParser {
 		el.appendChild(getP("Name", group.getName()));
 		return el;
 	}
-	
-	public Element parse(List<Course> courses) throws Exception {
-		Element el = new Element(Tag.valueOf("table"), "");
-		el.appendChild(getCourseHeadings());
-		for(Course course : courses) {
-			el.appendChild(parse(course));
-		}
 		
-		return el;
-	}
-	
-	public Element parse(Course course) throws Exception {
-		Element el = getTr();
-		el.appendChild(getTd(course.getName()));
-		el.appendChild(getTd(String.valueOf(course.getCredit())));
-		el.appendChild(getTd(course.getCode()));
-		el.appendChild(getTd(String.valueOf(course.getLevel())));
-		el.appendChild(getTd(String.valueOf(course.getTaughtIn())));
-		return el;
-	}
-	
-	public Element getCourseHeadings() throws Exception {
-		Element el = getTr();
-		el.appendChild(getTh("Name"));
-		el.appendChild(getTh("Credit"));
-		el.appendChild(getTh("Code"));
-		el.appendChild(getTh("Level"));
-		el.appendChild(getTh("Taught in"));
-		return el;
-	}
-	
 	private Element getP(String value, String content) {
 		Element el = new Element(Tag.valueOf("p"), "");
 		el.appendText(value + ": " + content);
